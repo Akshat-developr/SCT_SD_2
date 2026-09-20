@@ -18,7 +18,6 @@ This project was created for SkillCraft Technology — Software Development Inte
 ## Technologies Used
 
 - Python
-- Tkinter
 - Random module
 
 ## How to Run
