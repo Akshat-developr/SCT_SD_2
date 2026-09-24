@@ -76,7 +76,7 @@ class NumberGuessingGame:
             command=self.check_guess,
             font=("Arial", 11, "bold"),
             bg="#2563EB",
-            fg="#12355B",
+            fg="white",
             activebackground="white",
             activeforeground="#12355B",
             relief="flat",
@@ -124,36 +124,65 @@ class NumberGuessingGame:
         try:
             guess = int(self.guess_var.get().strip())
         except ValueError:
-            self.feedback_var.set("Please enter a whole number between 1 and 100.")
+            self.feedback_var.set(
+                "Please enter a whole number between 1 and 100."
+            )
             return
 
         if guess < 1 or guess > 100:
-            self.feedback_var.set("Your guess must be between 1 and 100.")
+            self.feedback_var.set(
+                "Your guess must be between 1 and 100."
+            )
             return
 
         self.attempts += 1
 
         if guess < self.secret_number:
-            self.lowest_possible = max(self.lowest_possible, guess + 1)
-            self.feedback_var.set("Too low! Try a higher number.")
+            self.lowest_possible = max(
+                self.lowest_possible,
+                guess + 1
+            )
+            self.feedback_var.set(
+                "Too low! Try a higher number."
+            )
+
         elif guess > self.secret_number:
-            self.highest_possible = min(self.highest_possible, guess - 1)
-            self.feedback_var.set("Too high! Try a lower number.")
+            self.highest_possible = min(
+                self.highest_possible,
+                guess - 1
+            )
+            self.feedback_var.set(
+                "Too high! Try a lower number."
+            )
+
         else:
             self.feedback_var.set(
-                f"Correct! You guessed the number in {self.attempts} attempts."
+                f"Correct! You guessed the number in "
+                f"{self.attempts} attempts."
             )
-            self.range_var.set(f"The secret number was {self.secret_number}.")
+
+            self.range_var.set(
+                f"The secret number was {self.secret_number}."
+            )
+
             self.game_finished = True
-            self.guess_button.config(state=tk.DISABLED, bg="#94A3B8")
+
+            self.guess_button.config(
+                state=tk.DISABLED,
+                bg="#94A3B8"
+            )
 
         if not self.game_finished:
             self.range_var.set(
                 f"Hint: the number is between "
-                f"{self.lowest_possible} and {self.highest_possible}."
+                f"{self.lowest_possible} and "
+                f"{self.highest_possible}."
             )
 
-        self.attempts_var.set(f"Attempts: {self.attempts}")
+        self.attempts_var.set(
+            f"Attempts: {self.attempts}"
+        )
+
         self.guess_var.set("")
         self.guess_entry.focus()
 
@@ -165,13 +194,25 @@ class NumberGuessingGame:
         self.game_finished = False
 
         self.guess_var.set("")
-        self.range_var.set("Hint: the number is between 1 and 100.")
-        self.feedback_var.set("A new secret number has been generated. Good luck!")
+
+        self.range_var.set(
+            "Hint: the number is between 1 and 100."
+        )
+
+        self.feedback_var.set(
+            "A new secret number has been generated. Good luck!"
+        )
+
         self.attempts_var.set("Attempts: 0")
-        self.guess_button.config(state=tk.NORMAL, bg="#2563EB")
+
+        self.guess_button.config(
+            state=tk.NORMAL,
+            bg="#2563EB"
+        )
+
         self.guess_entry.focus()
 
 
 root = tk.Tk()
-NumberGuessingGame(root)
+game = NumberGuessingGame(root)
 root.mainloop()
