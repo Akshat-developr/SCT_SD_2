@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <p class="eyebrow">NUMBER</p>
+      <h1>GUESSING GAME</h1>
+      <p class="subtitle">Can you find the hidden number?</p>
+    </header>
+
+    <section class="card" aria-label="Number guessing game">
+      <p class="hint" id="hint">Hint: the number is between 1 and 100</p>
+
+      <form id="guess-form" novalidate>
+        <label for="guess">ENTER YOUR GUESS</label>
+        <input id="guess" name="guess" type="number" inputmode="numeric"
+               step="1" min="1" max="100" autocomplete="off"
+               aria-describedby="feedback"
+               aria-label="Enter a whole number from 1 to 100">
+        <button class="button check-button" id="check-button" type="submit">
+          CHECK GUESS
+        </button>
+      </form>
+
+      <button class="button new-button" id="new-button" type="button">
+        <span aria-hidden="true">↻</span> NEW GAME
+      </button>
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite">
+        A new number is ready. Make your first guess!
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <span class="stat-label">ATTEMPTS</span>
+          <span class="stat-value" id="attempts">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">RANGE</span>
+          <span class="stat-value" id="range">1 - 100</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>Press ENTER to check your guess</footer>
+  </main>
+</body>
+</html>
